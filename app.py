@@ -1,3 +1,5 @@
+https://chatgpt-ruq982wake3h8jmjo46gll.streamlit.app/
+
 import streamlit as st
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import SystemMessage, HumanMessage
