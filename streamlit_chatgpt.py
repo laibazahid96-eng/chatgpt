@@ -74,14 +74,18 @@ if not st.session_state.authenticated:
       "Please enter a valid OpenAI API key below to access the assistant."
   )
 
-  api_key_input = st.text_input(
-      "OpenAI API Key",
-      type="password",
-      placeholder="sk-...",
-      help="Your key is stored only in session state and not saved.",
-  )
+  with st.form("api_key_form", clear_on_submit=False):
+    api_key_input = st.text_input(
+        "OpenAI API Key",
+        type="password",
+        placeholder="sk-...",
+        help="Your key is stored only in session state and not saved.",
+    )
+    submitted = st.form_submit_button("Submit & Proceed")
 
-  if st.button("Submit & Proceed"):
+  # A form submits when the button is clicked OR when Enter is pressed
+  # while focus is inside the form (e.g. in the text input).
+  if submitted:
     if api_key_input:
       with st.spinner("Validating API Key..."):
         if validate_api_key(api_key_input):
